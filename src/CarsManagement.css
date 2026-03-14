@@ -1,0 +1,229 @@
+.carsPage {
+    padding: 30px;
+}
+
+/* .carsPage.blurBackground {
+    filter: blur(4px);
+} */
+ 
+.carsTop {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.searchInput {
+    width: 300px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.filterBtn {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+}
+
+.carsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.carCard {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+    transition: 0.3s;
+}
+
+.carCard:hover {
+    transform: translateY(-6px);
+}
+
+.carImageSection {
+    position: relative;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.carImageSection img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.yearTag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #e5e7eb;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+.carDetails {
+    margin-top: 15px;
+}
+
+.carCategory {
+    font-size: 13px;
+    color: gray;
+}
+
+.carDetails h3 {
+    margin: 5px 0 10px;
+}
+
+.specs {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.specs p {
+    color: green;
+    font-weight: 600;
+}
+
+.carBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rentBtn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(45deg, #3b82f6, #6366f1);
+    color: white;
+    cursor: pointer;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.price span {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Booking Conformation */
+.bookingParent {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    /* z-index: 999; */
+}
+
+.bookingTitle {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #222;
+}
+
+.bookingForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.inputGroup textarea {
+    resize: none;
+    height: 70px;
+}
+
+.bookBtn {
+    margin-top: 30px;
+    padding: 10px;
+    width: 100%;
+    background: #1e88e5;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.bookBtn:hover {
+    background: #1565c0;
+}
+
+.bookingPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupBox {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 350px;
+}
+
+.popupBox h3 {
+    margin-bottom: 15px;
+}
+
+.popupDetails p {
+    margin: 6px 0;
+}
+
+.totalPrice {
+    font-size: 18px;
+    color: #1e88e5;
+    margin-top: 10px;
+}
+
+.confirmPaymentBtn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}

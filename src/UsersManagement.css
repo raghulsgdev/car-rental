@@ -1,0 +1,63 @@
+.usersPage {
+    padding: 30px;
+}
+
+.usersHeader {
+    margin-bottom: 25px;
+}
+
+.usersHeader h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.usersHeader p {
+    font-size: 14px;
+    color: #666;
+}
+
+.usersTableContainer {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
+}
+
+.usersTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.usersTable th,
+.usersTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.usersTable th {
+    background-color: #f8fafc;
+    font-weight: 600;
+}
+
+.usersTable tr:hover {
+    background-color: #f1f5f9;
+}
+
+.active {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.inactive {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
