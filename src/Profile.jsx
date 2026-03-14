@@ -8,12 +8,20 @@ function Profile() {
 
     const [profileData, setProfileData] = useState([])
 
+    // Updating Profile
     const [editMode, setEditMode] = useState(false)
-
     const [editProfile, setEditProfile] = useState({
         customer_name: "",
         email: "",
         phone: ""
+    })
+
+    // Changing Password
+    const [passwordMode, setPasswordMode] = useState(false)
+    const [changePassword, setchangePassword] = useState({
+        current_password: "",
+        new_password: "",
+        confirm_password: ""
     })
 
     const handleProfile = async () => {
@@ -57,6 +65,36 @@ function Profile() {
     }
 
 
+    const handlePasswordChange = async () => {
+
+        if (changePassword.new_password !== changePassword.confirm_password) {
+            alert("Passwords Do Not Match")
+            return
+        }
+
+        const userId = localStorage.getItem("User Id")
+
+        try {
+            const res = await axios.put(`http://127.0.0.1:8000/users/change-password/${userId}`, changePassword)
+            alert("Password Changed Successfully!")
+
+            setchangePassword({
+                customer_name: "",
+                email: "",
+                phone: ""
+            })
+
+        } catch (error) {
+            alert("Server Respose Error", error)
+
+        }
+
+
+
+
+    }
+
+
     return (
         <div>
 
@@ -85,7 +123,7 @@ function Profile() {
 
                                     <div className="profileNameBox">
 
-                                        {editMode ?
+                                        {/* {editMode ?
                                             <input
                                                 className="editInput"
                                                 value={editProfile.customer_name}
@@ -96,10 +134,10 @@ function Profile() {
                                                     })
                                                 }
                                             />
-                                            :
-                                            <h2>{profile.customer_name}</h2>
+                                            : */}
+                                        <h2>{profile.customer_name}</h2>
 
-                                        }
+                                        {/* } */}
                                         <p className="profileEmail">{profile.email}</p>
 
                                     </div>
@@ -128,7 +166,6 @@ function Profile() {
 
                                     </div>
 
-
                                     <div className="detailRow">
                                         <span className="detailLabel">Email</span>
 
@@ -149,7 +186,6 @@ function Profile() {
                                         }
 
                                     </div>
-
 
                                     <div className="detailRow">
                                         <span className="detailLabel">Phone</span>
@@ -195,21 +231,21 @@ function Profile() {
 
                     <div className="profileButtons">
                         {!editMode ?
-                            <div>
+                            <>
                                 <button className="editBtn" onClick={() => setEditMode(true)}>
                                     Edit Profile
                                 </button>
 
-                                <button className="passwordBtn">
+                                <button className="passwordBtn" onClick={() => setPasswordMode(true)}>
                                     Change Password
                                 </button>
 
                                 <button className="logoutBtn" onClick={() => navigate("/")}>
                                     Logout
                                 </button>
-                            </div>
+                            </>
                             :
-                            <div>
+                            <>
                                 <button className="editBtn" onClick={handleSave}>
                                     Save
                                 </button>
@@ -217,12 +253,78 @@ function Profile() {
                                 <button className="passwordBtn" onClick={() => setEditMode(false)}>
                                     Cancel
                                 </button>
-                            </div>
+                            </>
                         }
                     </div>
                 </section>
+
+                {passwordMode && (
+
+                    <div className="passwordCard">
+
+                        <div className='passwordBox'>
+                            <h2>Change Password</h2>
+                            <div className="passwordForm">
+
+                                <div className="passwordRow">
+                                    <label>Current Password</label>
+                                    <input
+                                        type="password"
+                                        value={changePassword.current_password}
+                                        placeholder='Current Password'
+                                        onChange={(e) =>
+                                            setchangePassword({ ...changePassword, current_password: e.target.value })
+                                        }
+                                    />
+                                </div>
+
+                                <div className="passwordRow">
+                                    <label>New Password</label>
+                                    <input
+                                        type="password"
+                                        value={changePassword.new_password}
+                                        placeholder='New Password'
+                                        onChange={(e) =>
+                                            setchangePassword({ ...changePassword, new_password: e.target.value })
+                                        }
+                                    />
+                                </div>
+
+                                <div className="passwordRow">
+                                    <label>Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        value={changePassword.confirm_password}
+                                        placeholder='Confirm Password'
+                                        onChange={(e) =>
+                                            setchangePassword({ ...changePassword, confirm_password: e.target.value })
+                                        }
+                                    />
+                                </div>
+
+                                <div className="passwordButtons">
+
+                                    <button className="editBtn">
+                                        Update Password
+                                    </button>
+
+                                    <button className="passwordBtn" onClick={() => setPasswordMode(false)}>
+                                        Cancel
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                )}
+
             </main>
-        </div>
+        </div >
     )
 }
 

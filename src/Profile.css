@@ -83,7 +83,6 @@
     cursor: pointer;
 }
 
-
 .logoutBtn {
     padding: 10px 20px;
     border: none;
@@ -92,7 +91,6 @@
     border-radius: 6px;
     cursor: pointer;
 }
-
 
 .editBtn:hover {
     background: #1565c0;
@@ -104,4 +102,66 @@
 
 .logoutBtn:hover {
     background: #ab2525;
+}
+
+.editInput {
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: none;
+}
+
+.passwordCard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    /* margin-top: 20px;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 450px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); */
+}
+
+.passwordBox {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.passwordForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.passwordRow {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.passwordRow input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.passwordButtons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
 }
