@@ -50,7 +50,6 @@ function Profile() {
 
 
     const handleSave = async () => {
-
         const userId = localStorage.getItem("User Id")
 
         try {
@@ -68,7 +67,7 @@ function Profile() {
     const handlePasswordChange = async () => {
 
         if (changePassword.new_password !== changePassword.confirm_password) {
-            alert("Passwords Do Not Match")
+            alert("Passwords do not Match")
             return
         }
 
@@ -76,21 +75,26 @@ function Profile() {
 
         try {
             const res = await axios.put(`http://127.0.0.1:8000/users/change-password/${userId}`, changePassword)
-            alert("Password Changed Successfully!")
+
+            if (res.data.Message === "Incorrect Password") {
+                alert("Current Password is Incorrect! Please Re-Enter.")
+
+            } else {
+                alert("Password Updated Successfully.")
+        
+            }
 
             setchangePassword({
-                customer_name: "",
-                email: "",
-                phone: ""
+                current_password: "",
+                new_password: "",
+                confirm_password: ""
             })
+
 
         } catch (error) {
             alert("Server Respose Error", error)
 
         }
-
-
-
 
     }
 
@@ -304,7 +308,7 @@ function Profile() {
 
                                 <div className="passwordButtons">
 
-                                    <button className="editBtn">
+                                    <button className="editBtn" onClick={() => handlePasswordChange()}>
                                         Update Password
                                     </button>
 

@@ -5,6 +5,25 @@ import marcedes from './assets/marcedes.jpeg'
 import testla from './assets/testla.avif'
 
 function CarsManagement() {
+    const [carData, setCarData] = useState([])
+
+    const carApi = async () => {
+
+        try {
+            const carData = await axios.get("http://127.0.0.1:8000/admin/cars")
+
+            console.log(carData.data);
+            setCarData(carData.data.carsData)
+
+        } catch (error) {
+            alert("Server Response Error", error)
+
+        }
+    }
+
+    useEffect(() => {
+        carApi()
+    }, [])
 
     return (
         <div>
@@ -15,86 +34,47 @@ function CarsManagement() {
 
                     <input
                         type="text"
-                        placeholder="Search car name, model"
+                        placeholder="Add New Car"
+                        // value={carAdd.car}
                         className="searchInput"
+                        // onChange={(e) => setCarAdd({...carAdd, car: e.target.value})}
                     />
 
-                    <button className="filterBtn">Filter</button>
+                    <button className="filterBtn">Add +</button>
 
                 </div>
 
                 <div className="carsGrid">
 
-                    <div className="carCard">
-                        <div className="carImageSection">
-                            <span className="yearTag">2023</span>
-                            <img src={audi} alt="Audi" />
-                        </div>
+                    {
+                        carData.map((val, ind) => {
 
-                        <div className="carDetails">
-                            <p className="carCategory">Premium Plus</p>
-                            <h3>Audi Q7</h3>
+                            return (
+                                <div key={ind} className="carCard">
+                                    <div className="carImageSection">
+                                        <span className="yearTag">{val.year}</span>
+                                        <img src={testla} alt="Tesla" />
+                                    </div>
 
-                            <div className="specs">
-                                <span>SUV</span>
-                                <span>4 Seats</span>
-                                <span>Auto</span>
-                            </div>
+                                    <div className="carDetails">
+                                        <p className="carCategory">Standard</p>
+                                        <h3>{val.car_name} {val.model}</h3>
 
-                            <div className="carBottom">
-                                <button className="rentBtn">Rent Now</button>
-                                <p className="price">₹8,500 <span>/DAY</span></p>
-                            </div>
-                        </div>
-                    </div>
+                                        <div className="specs">
+                                            <span>Sedan</span>
+                                            <span>{val.seats}</span>
+                                            <span>{val.transmission}</span>
+                                        </div>
 
-
-                    <div className="carCard">
-                        <div className="carImageSection">
-                            <span className="yearTag">2023</span>
-                            <img src={marcedes} alt="Benz" />
-                        </div>
-
-                        <div className="carDetails">
-                            <p className="carCategory">Luxury</p>
-                            <h3>Mercedes S-Class</h3>
-
-                            <div className="specs">
-                                <span>Sedan</span>
-                                <span>4 Seats</span>
-                                <span>Auto</span>
-                            </div>
-
-                            <div className="carBottom">
-                                <button className="rentBtn">Rent Now</button>
-                                <p className="price">12,000 <span>/DAY</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="carCard">
-                        <div className="carImageSection">
-                            <span className="yearTag">2023</span>
-                            <img src={testla} alt="Tesla" />
-                        </div>
-
-                        <div className="carDetails">
-                            <p className="carCategory">Standard</p>
-                            <h3>Tesla Model 3</h3>
-
-                            <div className="specs">
-                                <span>Sedan</span>
-                                <span>4 Seats</span>
-                                <span>Electric</span>
-                            </div>
-
-                            <div className="carBottom">
-                                <button className="rentBtn">Rent Now</button>
-                                <p className="price">₹10,000 <span>/DAY</span></p>
-                            </div>
-                        </div>
-                    </div>
+                                        <div className="carBottom">
+                                            {/* <button className="rentBtn">Rent Now</button> */}
+                                            <p className="price"> {val.price_per_day} <span>/DAY</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
                 </div>
 

@@ -37,6 +37,10 @@
     color: gray;
 }
 
+.reportBox p {
+    color: #1e88e5;
+}
+
 .reportNumber {
     font-size: 22px;
     font-weight: bold;
@@ -47,6 +51,7 @@
 
 .reportTableSection {
     margin-bottom: 30px;
+    margin-top: 40px;
 }
 
 .reportTableSection h3 {

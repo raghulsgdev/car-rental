@@ -35,14 +35,11 @@ function MyBookings() {
             </header>
 
             <section className="currentBookingSection">
-
                 <h2 className="sectionTitle">Current Booking</h2>
-
                 {
                     currentBookings.map((val, ind) => {
                         return (
                             <article key={ind} className="bookingCard">
-
                                 <img
                                     className="carImage"
                                     src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
@@ -58,7 +55,6 @@ function MyBookings() {
                                     <span className="statusActive">{val.status}</span>
 
                                 </div>
-
                             </article>
                         )
                     })
@@ -67,13 +63,10 @@ function MyBookings() {
             </section>
 
             <section className="historySection">
-
                 <h2 className="sectionTitle">Booking History</h2>
-
                 <div className="historyList">
 
                     {
-                        
                         completedBookings.map((val, ind) => {
                             return (
                                 <article key={ind} className="bookingCard">

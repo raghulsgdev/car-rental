@@ -12,6 +12,10 @@ function Cars() {
     end_date: ""
   })
 
+  const [payInpt, setPayInpt] = useState({
+    payment: ""
+  })
+
   // Car Id and Car Price Per Day
   const [carId, setCarId] = useState(0)
   const [price, setPrice] = useState(0)
@@ -22,15 +26,12 @@ function Cars() {
   const [bookingData, setBookingData] = useState([])
   const [bookingConfirmation, setBookingConfirmation] = useState(false)
 
-  // console.log("API Checking 3...");
-
   // Get Cars
   const carApi = async () => {
-    // console.log("API Checking 1...");
-    try {
-      // console.log("API Checking 2...");
 
+    try {
       const carData = await axios.get("http://127.0.0.1:8000/users/cars")
+
       console.log(carData.data);
       setCarData(carData.data.CarData)
 
@@ -42,29 +43,58 @@ function Cars() {
 
 
   // Post Bookings
-  const bookingApi = async () => {
+  const confirmBooking = async () => {
+    const userId = localStorage.getItem("User Id")
+
+    try {
+      const bookingData = await axios.post(`http://127.0.0.1:8000/users/booking-confirm/${userId}`, {
+        car_id: carId,
+        start_date: value.start_date,
+        end_date: value.end_date,
+        car_price: price,
+        payment: payInpt.payment
+      })
+
+      console.log(bookingData.data);
+
+      if (bookingData.data.Message === "dateMismatch") {
+        alert("End date must be after start date")
+        return
+
+      } else if (bookingData.data.Message === "Booking Confirmed") {
+        setBookingData(bookingData.data)
+        alert("Booked Successfully!")
+
+      }
+
+    } catch (error) {
+      alert("Server Response Error", error)
+
+    }
+  }
+
+
+  const handelBill = async () => {
+
     try {
 
-      const userId = localStorage.getItem("User Id")
-      const bookingData = await axios.post(`http://127.0.0.1:8000/users/booking-form/${userId}`, {
+      const res = await axios.post("http://127.0.0.1:8000/users/booking-bill", {
         car_id: carId,
         start_date: value.start_date,
         end_date: value.end_date,
         car_price: price
       })
 
-      if (bookingData.data.Message === "dateMismatch") {
+      if (res.data.Message === "dateMismatch") {
         alert("End date must be after start date")
         return
       }
 
-
-      setBookingData(bookingData.data)
-      // setBookingConfirmation(true)
+      setBookingData(res.data)
+      setBookingConfirmation(true)
 
     } catch (error) {
-      alert("Server Response Error", error)
-
+      alert("Server Response Error")
     }
   }
 
@@ -82,23 +112,33 @@ function Cars() {
     setrentNow(true)
   }
 
-  function handleConfirmation(e) {
+  async function handleConfirmation(e) {
     e.preventDefault()
-    console.log(value);
-    setBookingConfirmation(true)
-    // rentNow(false)
-    // bookingApi()
+
+    await handelBill()
+    // setBookingConfirmation(true)
+
+    // setValue({
+    //   start_date: "",
+    //   end_date: ""
+    // })
+  }
+
+  async function handlePayment() {
+
+    await confirmBooking()
+    setrentNow(false)
+    setBookingConfirmation(false)
 
     setValue({
       start_date: "",
       end_date: ""
     })
-  }
 
-  function handlePayment() {
-    setrentNow(false)
-    setBookingConfirmation(false)
-    bookingApi()
+    setPayInpt({
+      payment: ""
+    })
+
   }
 
   return (
@@ -112,8 +152,6 @@ function Cars() {
             placeholder="Search car name, model"
             className="searchInput"
           />
-
-          {/* <button className="filterBtn">Filter</button> */}
 
         </div>
 
@@ -188,28 +226,32 @@ function Cars() {
         {/* Booking Confirmation PopUp */}
         {bookingConfirmation &&
           <div className="bookingPopup">
-
             <div className="popupBox">
-
               <h3>Booking Summary</h3>
 
               <div className="popupDetails">
-                <p><strong>Car:</strong> {bookingData.data?.car_name}</p>
+                <p><strong>Car:</strong> {bookingData.Bill?.car_name}</p>
                 <p><strong>Pickup Date:</strong>{bookingData.Bill?.start_date}</p>
                 <p><strong>Return Date:</strong>{bookingData.Bill?.end_date}</p>
-                <p><strong>Total Days:</strong> 2</p>
+                {/* <p><strong>Total Days:</strong> 2</p> */}
                 <p><strong>Price / Day:</strong> {bookingData.Price_Per_Day}</p>
                 <p className="totalPrice"><strong>Total Amount:</strong> {bookingData.Total_Amount}</p>
+                <input
+                  type="number"
+                  className='payInpt'
+                  placeholder='Enter the Paying Amount'
+                  value={payInpt.payment}
+                  onChange={(e) => setPayInpt({ ...payInpt, payment: Number(e.target.value) })}
+                />
               </div>
 
-              <button className="confirmPaymentBtn" onClick={() => handlePayment}>Confirm</button>
-
+              <button className="confirmPaymentBtn" onClick={() => handlePayment()}>Confirm</button>
             </div>
 
           </div>
         }
       </div>
-      
+
     </div>
   )
 }

@@ -2,8 +2,6 @@
     padding: 30px;
 }
 
-/* welcome */
-
 .welcomeBox {
     background: white;
     padding: 25px;
@@ -24,9 +22,6 @@
 .welcomeText {
     color: gray;
 }
-
-
-/* banner */
 
 .bannerSection {
     position: relative;
@@ -52,9 +47,6 @@
     margin-bottom: 5px;
 }
 
-
-/* stats */
-
 .statsSection {
     display: flex;
     gap: 20px;
@@ -75,7 +67,7 @@
 .statNumber {
     font-size: 28px;
     font-weight: bold;
-    color: green;
+    color: #2563eb;
 }
 
 .statText {

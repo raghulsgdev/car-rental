@@ -1,6 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function Report() {
+
+    const [reportData, setReportData] = useState({})
+    
+
+    const handleReports = async () => {
+
+        try {
+
+            const res = await axios.get("http://127.0.0.1:8000/admin/reports")
+            setReportData(res.data)
+
+        } catch (error) {
+            alert("Server Response Error")
+
+        }
+
+    }
+
+    // const handleRecentBookings = async () => {
+
+    //     try {
+
+    //         const res = await axios.get("http://127.0.0.1:8000/admin/recent-bookings")
+    //         console.log(res.data)
+    //         setRecentBookings(res.data.recentBookingsData)
+
+    //     } catch (error) {
+
+    //         alert("Server Response Error")
+
+    //     }
+
+    // }
+    
+
+    useEffect(() => {
+        handleReports()
+        // handleRecentBookings()
+    }, [])
+
+
     return (
         <div>
             <div className="reportPage">
@@ -15,27 +57,27 @@ function Report() {
 
                     <div className="reportBox">
                         <h4>This Month Bookings</h4>
-                        <p className="reportNumber">32</p>
+                        <p className="reportNumber">{reportData.thisMonthBookings}</p>
                     </div>
 
                     <div className="reportBox">
                         <h4>This Month Revenue</h4>
-                        <p className="reportNumber">₹ 1,25,000</p>
+                        <p className="reportNumber">₹ {reportData.thisMonthRevenue}</p>
                     </div>
 
                     <div className="reportBox">
                         <h4>Most Booked Car</h4>
-                        <p className="reportNumber">Audi Q7</p>
+                        <p className="reportNumber">{reportData.mostBookedCar || "No Bookings Yet"}</p>
                     </div>
 
                     <div className="reportBox">
                         <h4>Active Users</h4>
-                        <p className="reportNumber">87</p>
+                        <p className="reportNumber">{reportData.activeUsers}</p>
                     </div>
 
                 </div>
 
-                {/* Monthly Report Table */}
+                {/* Monthly Revenue Table */}
                 <div className="reportTableSection">
                     <h3>Monthly Revenue</h3>
 
@@ -47,54 +89,29 @@ function Report() {
                                 <th>Total Revenue</th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            <tr>
-                                <td>January</td>
-                                <td>20</td>
-                                <td>₹ 75,000</td>
-                            </tr>
-                            <tr>
-                                <td>February</td>
-                                <td>32</td>
-                                <td>₹ 1,25,000</td>
-                            </tr>
+
+                            {reportData.monthlyRevenue?.map((val, ind) => {
+                                return (
+                                    <tr key={ind}>
+                                        <td>{val.month}</td>
+                                        <td>{val.total_bookings}</td>
+                                        <td>₹ {val.total_revenue}</td>
+                                    </tr>
+                                )
+
+                            })}
+
                         </tbody>
                     </table>
                 </div>
 
-                {/* Recent Bookings */}
-                <div className="reportTableSection">
-                    <h3>Recent Bookings</h3>
-
-                    <table className="reportTable">
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Car</th>
-                                <th>Date</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Raghul</td>
-                                <td>BMW X5</td>
-                                <td>12-02-2025</td>
-                                <td>₹ 12,000</td>
-                            </tr>
-                            <tr>
-                                <td>Mariyam Shaliha</td>
-                                <td>Audi Q7</td>
-                                <td>15-02-2025</td>
-                                <td>₹ 15,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+                
             </div>
         </div>
     )
+
 }
 
 export default Report

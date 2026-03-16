@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, useNavigate, Outlet } from "react-router-dom";
 
 function AdminDashboard() {
+
+    const navigate = useNavigate()
 
     return (
         <div className="parent">
@@ -13,6 +15,9 @@ function AdminDashboard() {
                     </span>
                     <span className="logo">
                         ADMIN
+                        <span style={{ color: 'gray', fontWeight: '100', marginLeft: '6px' }}>
+                            Portal
+                        </span>
                     </span>
                 </div>
 
@@ -63,6 +68,12 @@ function AdminDashboard() {
                         </NavLink>
                     </li>
                 </ul>
+
+                <div className="logOut">
+                    <button onClick={() => navigate("/")}>
+                        Log Out
+                    </button>
+                </div>
 
             </div>
 

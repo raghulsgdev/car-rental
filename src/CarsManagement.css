@@ -1,10 +1,6 @@
 .carsPage {
     padding: 30px;
 }
-
-/* .carsPage.blurBackground {
-    filter: blur(4px);
-} */
  
 .carsTop {
     display: flex;
@@ -119,7 +115,6 @@
     color: gray;
 }
 
-/* Booking Conformation */
 .bookingParent {
     position: fixed;
     top: 50%;
@@ -226,4 +221,12 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.payInpt {
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+    outline: none;
+    border: 1px solid rgb(47, 47, 246);
 }
