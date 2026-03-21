@@ -9,6 +9,40 @@ function Payment() {
         // pendingAmount: 0
     })
 
+    const [selectedBookingId, setSelectedBookingId] = useState(null)
+
+    const [paymentPending, setPaymentPending] = useState({
+        pending_amount: ""
+    })
+
+    const [payPending, setPayPending] = useState(false)
+
+
+    const handlePendingPay = async () => {
+
+        const bookingId = selectedBookingId
+
+        try {
+            const res = await axios.put(`http://127.0.0.1:8000/users/pending-pay/${bookingId}`, paymentPending)
+            console.log(res.data)
+
+            if (res.data.Message === "Paid Successfully") {
+                alert("Payment Successful")
+                setPayPending(false)
+                
+                await handlePaymentSummary()
+                await handleRecentPayments()
+
+            }
+
+
+        } catch (error) {
+            console.log("Server Error", error)
+
+        }
+
+    }
+
     const [recentPayments, setRecentPayments] = useState([])
 
     const handleRecentPayments = async () => {
@@ -16,13 +50,11 @@ function Payment() {
         const userId = localStorage.getItem("User Id")
 
         try {
-
             const res = await axios.get(`http://127.0.0.1:8000/users/recent-payments/${userId}`)
             console.log(res.data)
             setRecentPayments(res.data.recentPayments)
 
         } catch (error) {
-
             console.log("Server Error", error)
 
         }
@@ -30,11 +62,11 @@ function Payment() {
     }
 
     const handlePaymentSummary = async () => {
+
         const userId = localStorage.getItem("User Id")
 
         try {
             const res = await axios.get(`http://127.0.0.1:8000/users/payment-summary/${userId}`)
-
             console.log(res.data);
             setPaymentSummary(res.data)
 
@@ -63,21 +95,57 @@ function Payment() {
                 <section className="paymentCards">
 
                     <div className="paymentCard">
-                        <h3>Total Bookings</h3>
+                        <h3>Total Bookings 🗓️</h3>
                         <p className="paymentNumber">{paymentSummary?.totalBookings}</p>
                     </div>
 
                     <div className="paymentCard">
-                        <h3>Total Amount Paid</h3>
+                        <h3>Total Amount Paid 💵</h3>
                         <p className="paymentNumber">{paymentSummary?.totalPaidAmount}</p>
                     </div>
 
                     <div className="paymentCard">
-                        <h3>Pending Payment</h3>
+                        <h3>Pending Payment ⌛</h3>
                         <p className="paymentNumber">{paymentSummary?.pendingAmount}</p>
+                        <button className='payNowBtn' onClick={() => {
+
+                            const pendingBooking = recentPayments.find(
+                                (val) => val.payment_status !== "Paid"
+                            )
+
+                            if (!pendingBooking) {
+                                alert("No pending payment")
+                                return
+                            }
+
+                            console.log("Selected booking:", pendingBooking)
+
+                            setSelectedBookingId(pendingBooking.booking_id)
+                            setPayPending(true)
+                        }}>
+                            Pay Now
+                        </button>
                     </div>
 
                 </section>
+
+                {payPending &&
+                    <section className='pendingAmtSec'>
+                        <div className='pendingAmt'>
+                            <h2>Pay Pending</h2>
+
+                            <input
+                                type="text"
+                                className='inpp'
+                                placeholder='Enter the Amount'
+                                value={paymentPending.pending_amount}
+                                onChange={(e) => setPaymentPending({ ...paymentPending, pending_amount: e.target.value })}
+                            />
+
+                            <button className='submitBtn' onClick={() => handlePendingPay()}>Pay</button>
+                        </div>
+                    </section>
+                }
 
                 <section className="paymentHistory">
                     <h2>Recent Payments</h2>

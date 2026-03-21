@@ -19,6 +19,7 @@ import Cars from './Cars'
 import MyBookings from './MyBookings'
 import Payment from './Payment'
 import Profile from './Profile'
+import ForgotPassword from './ForgotPassword'
 
 
 function App() {
@@ -27,8 +28,9 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Index />} />
-        <Route path='/adminlogin' element={<Admin />} />~
+        <Route path='/adminlogin' element={<Admin />} />
         <Route path='/userlogin' element={< Login />} />
+        <Route path='/forgotpassword' element={< ForgotPassword />} />
         <Route path='/userregister' element={< Register />} />
 
         <Route path='/admindashboard' element={< AdminDashboard />}>

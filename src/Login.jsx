@@ -6,7 +6,7 @@ import Profile from './Profile';
 function Login() {
 
     const navigate = useNavigate()
-    const [first, setfirst] = useState(1)
+    // const [first, setfirst] = useState(1)
 
     const [userData, setUserData] = useState({
         email: "",
@@ -23,7 +23,7 @@ function Login() {
             console.log(storedData.data.Id);
             const userId = storedData.data.Id
             localStorage.setItem("User Id", JSON.stringify(userId))
-            
+
             // alert(`Welcome Back ${storedData.data.Customer_name}`);
             // navigate("/userdashboard");
 
@@ -46,7 +46,7 @@ function Login() {
     }
 
     return (
-        
+
         <div>
 
             {/* <Profile/> */}
@@ -59,7 +59,7 @@ function Login() {
                             <label>Email</label>
                             <input
                                 type="email"
-                                placeholder="Enter admin email"
+                                placeholder="Enter Email"
                                 value={userData.email}
                                 onChange={(e) => setUserData({ ...userData, email: e.target.value })}
                                 required
@@ -70,7 +70,7 @@ function Login() {
                             <label>Password</label>
                             <input
                                 type="password"
-                                placeholder="Enter password"
+                                placeholder="Enter Password"
                                 value={userData.password}
                                 onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                                 required
@@ -80,9 +80,8 @@ function Login() {
                         <button type="submit" className="submitBtn">Login</button>
                         <div className='forgotSection'>
                             <Link className='link' to={'/userregister'}>New User?</Link>
-                            <Link className='link'>Forgot Password?</Link>
+                            <Link className='link' to={'/forgotpassword'}>Forgot Password?</Link>
                         </div>
-
 
                     </form>
                 </div>

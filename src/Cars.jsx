@@ -83,6 +83,7 @@ function Cars() {
         start_date: value.start_date,
         end_date: value.end_date,
         car_price: price
+
       })
 
       if (res.data.Message === "dateMismatch") {
@@ -114,14 +115,8 @@ function Cars() {
 
   async function handleConfirmation(e) {
     e.preventDefault()
-
     await handelBill()
-    // setBookingConfirmation(true)
 
-    // setValue({
-    //   start_date: "",
-    //   end_date: ""
-    // })
   }
 
   async function handlePayment() {
@@ -155,7 +150,6 @@ function Cars() {
 
         </div>
 
-        {/* Cars List */}
         <div className='carsGrid'>
           {
             carData.map((cars, ind) => {
@@ -177,6 +171,10 @@ function Cars() {
                       <p>{cars.available_status}</p>
                     </div>
 
+                    <div className='desSec'>
+                      <span className='description'>{cars.description}</span>
+                    </div>
+
                     <div className="carBottom">
                       <button className="rentBtn" onClick={() => handleRent(ind + 1, cars.price_per_day)}>Rent Now</button>
                       <p className="price">₹{cars.price_per_day} <span>/DAY</span></p>
@@ -188,7 +186,6 @@ function Cars() {
           }
         </div>
 
-        {/* Booking PopUp */}
         {rentNow &&
           <form className="bookingParent" onSubmit={handleConfirmation}>
 
@@ -223,7 +220,6 @@ function Cars() {
           </form>
         }
 
-        {/* Booking Confirmation PopUp */}
         {bookingConfirmation &&
           <div className="bookingPopup">
             <div className="popupBox">

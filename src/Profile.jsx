@@ -103,7 +103,7 @@ function Profile() {
         <div>
 
             <main className="profileParent">
-
+                
                 <header className="profileHeader">
                     <h1>My Profile</h1>
                     <p>Manage your personal and account details</p>
@@ -114,11 +114,9 @@ function Profile() {
                     {profileData.map((profile, ind) => {
 
                         return (
-
                             <div key={ind}>
 
                                 <div className="profileTop">
-
                                     <div className="profileImageBox">
                                         <span className="material-symbols-outlined profileIcon">
                                             account_circle
@@ -141,7 +139,6 @@ function Profile() {
                                             : */}
                                         <h2>{profile.customer_name}</h2>
 
-                                        {/* } */}
                                         <p className="profileEmail">{profile.email}</p>
 
                                     </div>
@@ -263,7 +260,6 @@ function Profile() {
                 </section>
 
                 {passwordMode && (
-
                     <div className="passwordCard">
 
                         <div className='passwordBox'>
@@ -317,16 +313,10 @@ function Profile() {
                                     </button>
 
                                 </div>
-
                             </div>
                         </div>
-
-
-
                     </div>
-
                 )}
-
             </main>
         </div >
     )

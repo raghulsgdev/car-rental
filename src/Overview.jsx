@@ -21,13 +21,14 @@ function Overview() {
     }
 
     const handleRecentBookings = async () => {
+        const userId = localStorage.getItem("User Id")
 
         try {
             console.log("Hello");
             
-            const res = await axios.get("http://127.0.0.1:8000/admin/recent-bookings")
+            const res = await axios.get(`http://127.0.0.1:8000/admin/recent-bookings`)
             console.log(res.data)
-            setRecentBookings(res.data.recentBookingsData)
+            setRecentBookings(res.data.recentBookingsData || [])
 
         } catch (error) {
             alert("Server Response Error")
@@ -53,28 +54,28 @@ function Overview() {
             <div className="cards">
 
                 <div className="box users">
-                    <h3>Total Users</h3>
+                    <h3>Total Users 👥</h3>
                     <p className="number">{overviewData.totalUsers}</p>
                 </div>
 
                 <div className="box cars">
-                    <h3>Total Cars</h3>
+                    <h3>Total Cars 🚘</h3>
                     <p className="number">{overviewData.totalCars}</p>
                 </div>
 
                 <div className="box bookings">
-                    <h3>Total Bookings</h3>
+                    <h3>Total Bookings 🗓️</h3>
                     <p className="number">{overviewData.totalBookings}</p>
                 </div>
 
                 <div className="box revenue">
-                    <h3>Total Revenue</h3>
+                    <h3>Total Revenue 💵</h3>
                     <p className="number">{overviewData.totalRevenue}</p>
                 </div>
 
             </div>
 
-            {/* Recent Bookings */}
+            
             <div className="reportTableSection">
                 <h3>Recent Bookings</h3>
 

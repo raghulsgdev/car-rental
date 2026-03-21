@@ -45,7 +45,7 @@ function Home() {
                 </section>
 
                 <section className="welcomeBox">
-                    <h1 className="welcomeTitle">Welcome Back <span> {home.userName}👋</span></h1>
+                    <h1 className="welcomeTitle">Welcome Back <span> {home.userName} 👋🏻</span></h1>
                     <p className="welcomeText">
                         Book your favorite cars easily and manage your bookings here.
                     </p>
@@ -54,13 +54,13 @@ function Home() {
                 <section className="statsSection">
 
                     <div className="statCard">
-                        <h2 className="statTitle">Total Bookings</h2>
+                        <h2 className="statTitle">Total Bookings 🗓️</h2>
                         <p className="statNumber">{home.totalBookings}</p>
                         <p className="statText">Cars booked</p>
                     </div>
 
                     <div className="statCard">
-                        <h2 className="statTitle">Total Amount Spent</h2>
+                        <h2 className="statTitle">Total Amount Spent 💵</h2>
                         <p className="statNumber">{home.totalAmtSpend}</p>
                         <p className="statText">On car rentals</p>
                     </div>

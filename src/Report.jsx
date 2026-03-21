@@ -3,39 +3,20 @@ import axios from 'axios'
 
 function Report() {
 
-    const [reportData, setReportData] = useState({})
-    
+    const [reportData, setReportData] = useState([])
 
     const handleReports = async () => {
 
         try {
-
             const res = await axios.get("http://127.0.0.1:8000/admin/reports")
             setReportData(res.data)
 
         } catch (error) {
-            alert("Server Response Error")
+            alert("Server Response Error", error)
 
         }
 
     }
-
-    // const handleRecentBookings = async () => {
-
-    //     try {
-
-    //         const res = await axios.get("http://127.0.0.1:8000/admin/recent-bookings")
-    //         console.log(res.data)
-    //         setRecentBookings(res.data.recentBookingsData)
-
-    //     } catch (error) {
-
-    //         alert("Server Response Error")
-
-    //     }
-
-    // }
-    
 
     useEffect(() => {
         handleReports()
@@ -52,32 +33,30 @@ function Report() {
                     <p>Monitor business performance</p>
                 </div>
 
-                {/* Summary Cards */}
                 <div className="reportCards">
 
                     <div className="reportBox">
-                        <h4>This Month Bookings</h4>
+                        <h4>This Month Bookings 🗓️</h4>
                         <p className="reportNumber">{reportData.thisMonthBookings}</p>
                     </div>
 
                     <div className="reportBox">
-                        <h4>This Month Revenue</h4>
+                        <h4>This Month Revenue 💵</h4>
                         <p className="reportNumber">₹ {reportData.thisMonthRevenue}</p>
                     </div>
 
                     <div className="reportBox">
-                        <h4>Most Booked Car</h4>
-                        <p className="reportNumber">{reportData.mostBookedCar || "No Bookings Yet"}</p>
+                        <h4>Most Booked Car 🚘</h4>
+                        <p className="reportNumber">{reportData.mostBookedCar}</p>
                     </div>
 
                     <div className="reportBox">
-                        <h4>Active Users</h4>
+                        <h4>Active Users 👥</h4>
                         <p className="reportNumber">{reportData.activeUsers}</p>
                     </div>
 
                 </div>
 
-                {/* Monthly Revenue Table */}
                 <div className="reportTableSection">
                     <h3>Monthly Revenue</h3>
 
@@ -106,8 +85,6 @@ function Report() {
                         </tbody>
                     </table>
                 </div>
-
-                
             </div>
         </div>
     )

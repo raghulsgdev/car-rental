@@ -112,38 +112,35 @@ function Bookings() {
 
   return (
     <div>
-
       <div className="bookingParenttt">
-
         <div className="miniConn">
 
           <div className="pageHeader">
             <h2>Booking Management</h2>
           </div>
 
-
           <div className="cardSection">
 
             <div className="card">
-              <h4>Total Bookings</h4>
+              <h4>Total Bookings 🗓️</h4>
               <h2>{bookingSummary.totalBookings}</h2>
               <p>This Month</p>
             </div>
 
             <div className="card">
-              <h4>Active Rentals</h4>
+              <h4>Active Rentals 🟢</h4>
               <h2>{bookingSummary.totalActives}</h2>
               <p>Currently Running</p>
             </div>
 
             <div className="card">
-              <h4>Completed</h4>
+              <h4>Completed ✅</h4>
               <h2>{bookingSummary.totalCompleted}</h2>
               <p>Successfully Returned</p>
             </div>
 
             <div className="card">
-              <h4>Cancelled</h4>
+              <h4>Cancelled ❎</h4>
               <h2>{bookingSummary.totalCancelled}</h2>
               <p>Booking Cancelled</p>
             </div>
