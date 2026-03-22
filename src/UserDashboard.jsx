@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Navigate, NavLink, Outlet } from 'react-router-dom'
 
 function UserDashboard() {
+
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <div className="parent">
 
-      <aside className="sidebar">
+      <div className="menuToggle" onClick={() => setIsOpen(true)}>
+        ☰
+      </div>
+
+      {isOpen && <div className="overlay" onClick={() => setIsOpen(false)}></div>}
+
+      <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+
         <div className="adminSection">
 
           <span className="material-symbols-outlined adminIcon">
@@ -18,7 +28,7 @@ function UserDashboard() {
 
         <ul>
           <li >
-            <NavLink className="menuLink" end to={''}>
+            <NavLink className="menuLink" end to={''} onClick={() => setIsOpen(false)}>
               <span className="material-symbols-outlined menuIcon">
                 home
               </span>
@@ -28,7 +38,7 @@ function UserDashboard() {
           </li>
 
           <li>
-            <NavLink className="menuLink" to={'cars'}>
+            <NavLink className="menuLink" to={'cars'} onClick={() => setIsOpen(false)}>
               <span className="material-symbols-outlined menuIcon">
                 directions_car
               </span>
@@ -37,7 +47,7 @@ function UserDashboard() {
           </li>
 
           <li>
-            <NavLink className="menuLink" to={'myBookings'}>
+            <NavLink className="menuLink" to={'myBookings'} onClick={() => setIsOpen(false)}>
               <span className="material-symbols-outlined menuIcon">
                 order_approve
               </span>
@@ -46,7 +56,7 @@ function UserDashboard() {
           </li>
 
           <li>
-            <NavLink className="menuLink" to={'payment'}>
+            <NavLink className="menuLink" to={'payment'} onClick={() => setIsOpen(false)}>
               <span className="material-symbols-outlined menuIcon">
                 payments
               </span>
@@ -55,7 +65,7 @@ function UserDashboard() {
           </li>
 
           <li>
-            <NavLink className="menuLink" to={'profile'}>
+            <NavLink className="menuLink" to={'profile'} onClick={() => setIsOpen(false)}>
               <span className="material-symbols-outlined menuIcon">
                 account_circle
               </span>

@@ -16,6 +16,8 @@ function Cars() {
     payment: ""
   })
 
+  const [search, setSearch] = useState("")
+
   // Car Id and Car Price Per Day
   const [carId, setCarId] = useState(0)
   const [price, setPrice] = useState(0)
@@ -99,6 +101,14 @@ function Cars() {
     }
   }
 
+
+  const filteredCars = carData.filter((car) =>
+
+    car.car_name.toLowerCase().includes(search.toLowerCase()) ||
+    car.brand.toLowerCase().includes(search.toLowerCase()) ||
+    car.model.toLowerCase().includes(search.toLowerCase())
+  )
+
   useEffect(() => {
     carApi()
   }, [])
@@ -108,8 +118,8 @@ function Cars() {
   function handleRent(carId, carPrice) {
     setCarId(carId)
     setPrice(carPrice)
-    console.log("Car Id", carId);
-    console.log("Car Price", carPrice);
+    // console.log("Car Id", carId);
+    // console.log("Car Price", carPrice);
     setrentNow(true)
   }
 
@@ -146,13 +156,14 @@ function Cars() {
             type="text"
             placeholder="Search car name, model"
             className="searchInput"
+            onChange={(e) => setSearch(e.target.value)}
           />
 
         </div>
 
         <div className='carsGrid'>
           {
-            carData.map((cars, ind) => {
+            filteredCars.map((cars, ind) => {
               return (
                 <div key={ind}>
                   <div className="carImageSection">
@@ -165,7 +176,7 @@ function Cars() {
                     <h3>{cars.car_name} {cars.model}</h3>
 
                     <div className="specs">
-                      <span>SUV</span>
+                      <span>{cars.brand}</span>
                       <span>{cars.seats}</span>
                       <span>{cars.transmission}</span>
                       <p>{cars.available_status}</p>
@@ -229,7 +240,6 @@ function Cars() {
                 <p><strong>Car:</strong> {bookingData.Bill?.car_name}</p>
                 <p><strong>Pickup Date:</strong>{bookingData.Bill?.start_date}</p>
                 <p><strong>Return Date:</strong>{bookingData.Bill?.end_date}</p>
-                {/* <p><strong>Total Days:</strong> 2</p> */}
                 <p><strong>Price / Day:</strong> {bookingData.Price_Per_Day}</p>
                 <p className="totalPrice"><strong>Total Amount:</strong> {bookingData.Total_Amount}</p>
                 <input

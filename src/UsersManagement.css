@@ -61,3 +61,42 @@
     border-radius: 20px;
     font-size: 12px;
 }
+
+/* MOBILE VIEW */
+
+@media (max-width: 768px) {
+
+    .usersPage {
+        padding: 15px;
+    }
+
+    .usersHeader h2 {
+        padding-top: 30px;
+        font-size: 20px;
+    }
+
+    .usersHeader p {
+        font-size: 13px;
+    }
+
+    .usersTableContainer {
+        padding: 10px;
+    }
+
+    .usersTable {
+        min-width: 700px;
+        font-size: 13px;
+    }
+
+    .usersTable th,
+    .usersTable td {
+        padding: 10px;
+        white-space: nowrap;
+    }
+
+    .active,
+    .inactive {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}

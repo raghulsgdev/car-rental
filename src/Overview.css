@@ -2,7 +2,7 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    /* row-gap: 20px; */
+    padding-top: 70px;
 }
 
 .top {
@@ -64,3 +64,59 @@
     border-left: 6px solid #ef4444;
 }
 
+/* MOBILE VIEW */
+
+@media (max-width: 768px) {
+
+    .overview {
+        padding: 15px;
+    }
+
+    .top {
+        margin-bottom: 20px;
+    }
+
+    .top h2 {
+        font-size: 20px;
+    }
+
+    .top p {
+        font-size: 13px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 12px;
+    }
+
+    .box {
+        width: 100%;
+        padding: 18px;
+        border-radius: 8px;
+    }
+
+    .box h3 {
+        font-size: 14px;
+    }
+
+    .number {
+        font-size: 20px;
+    }
+
+    .reportTableSection {
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+
+    .reportTable {
+        min-width: 500px;
+        font-size: 13px;
+    }
+
+    .reportTable th,
+    .reportTable td {
+        padding: 10px;
+        white-space: nowrap;
+    }
+}

@@ -3,12 +3,21 @@ import { NavLink, useNavigate, Outlet } from "react-router-dom";
 
 function AdminDashboard() {
 
+
+    const [isOpen, setIsOpen] = useState(false)
     const navigate = useNavigate()
 
     return (
         <div className="parent">
 
-            <div className="sidebar">
+            <div className="menuToggle" onClick={() => setIsOpen(true)}>
+                ☰
+            </div>
+
+            {isOpen && <div className="overlay" onClick={() => setIsOpen(false)}></div>}
+
+            <div className={`sidebar ${isOpen ? "open" : ""}`}>
+
                 <div className="adminSection">
                     <span className="material-symbols-outlined adminIcon">
                         shield_person
@@ -23,7 +32,7 @@ function AdminDashboard() {
 
                 <ul>
                     <li >
-                        <NavLink className="menuLink" end to={''}>
+                        <NavLink className="menuLink" end to={''} onClick={() => setIsOpen(false)}>
                             <span className="material-symbols-outlined menuIcon">
                                 dashboard
                             </span>
@@ -33,7 +42,7 @@ function AdminDashboard() {
                     </li>
 
                     <li>
-                        <NavLink className="menuLink" to={'cars'}>
+                        <NavLink className="menuLink" to={'cars'} onClick={() => setIsOpen(false)}>
                             <span className="material-symbols-outlined menuIcon">
                                 directions_car
                             </span>
@@ -42,7 +51,7 @@ function AdminDashboard() {
                     </li>
 
                     <li>
-                        <NavLink className="menuLink" to={'users'}>
+                        <NavLink className="menuLink" to={'users'} onClick={() => setIsOpen(false)}>
                             <span className="material-symbols-outlined menuIcon">
                                 diversity_1
                             </span>
@@ -51,7 +60,7 @@ function AdminDashboard() {
                     </li>
 
                     <li>
-                        <NavLink className="menuLink" to={'bookings'}>
+                        <NavLink className="menuLink" to={'bookings'} onClick={() => setIsOpen(false)}>
                             <span className="material-symbols-outlined menuIcon">
                                 calendar_check
                             </span>
@@ -60,7 +69,7 @@ function AdminDashboard() {
                     </li>
 
                     <li>
-                        <NavLink className="menuLink" to={'report'}>
+                        <NavLink className="menuLink" to={'report'} onClick={() => setIsOpen(false)}>
                             <span className="material-symbols-outlined menuIcon">
                                 analytics
                             </span>

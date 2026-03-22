@@ -177,3 +177,69 @@
 .rejectBtn:hover {
     background-color: rgb(190, 34, 34);
 }
+
+/* MOBILE VIEW */
+
+@media (max-width: 768px) {
+
+    .bookingParenttt {
+        padding: 10px;
+    }
+
+    .pageHeader {
+        padding-top: 30px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .pageHeader h2 {
+        padding-left: 18px;
+        font-size: 20px;
+    }
+
+    .cardSection {
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .card {
+        flex: 1 1 48%;
+        padding: 15px;
+    }
+
+    .card h4 {
+        font-size: 13px;
+    }
+
+    .card h2 {
+        font-size: 18px;
+    }
+
+    .card p {
+        font-size: 11px;
+    }
+
+    .tableSection {
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .bookingTable {
+        min-width: 700px;
+        font-size: 13px;
+    }
+
+    .bookingTable th,
+    .bookingTable td {
+        padding: 10px;
+        white-space: nowrap;
+    }
+
+    .acceptBtn,
+    .rejectBtn {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+}

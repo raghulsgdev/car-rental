@@ -78,3 +78,64 @@
 .link {
     text-decoration: none;
 }
+
+
+/* MOBILE VIEW */
+
+@media (max-width: 768px) {
+
+    .reportHeader {
+        padding-top: 30px;
+    }
+
+    .container {
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .miniContainer {
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .miniContainer h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        text-align: center;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .input {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .input input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .submitBtn {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .link {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 13px;
+    }
+}

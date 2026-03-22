@@ -280,3 +280,78 @@
     border-radius: 10px;
     height: 180px;
 }
+
+/* MOBILE VIEW */
+
+@media (max-width: 768px) {
+
+    .carsPage {
+        padding: 15px;
+    }
+
+    .carsTop {
+        padding-top: 40px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .filterBtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .carsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .carCard {
+        padding: 15px;
+    }
+
+    .carImageSection img {
+        height: 120px;
+    }
+
+    .carDetails h3 {
+        font-size: 15px;
+    }
+
+    .specs {
+        flex-wrap: wrap;
+        font-size: 12px;
+    }
+
+    .price {
+        font-size: 14px;
+    }
+
+    /* Add Car Form */
+
+    .addSection {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .addSection>div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .addInpt {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .desInpt {
+        width: 100%;
+        height: 120px;
+    }
+
+    .addBtn {
+        width: 100%;
+    }
+}
