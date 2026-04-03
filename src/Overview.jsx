@@ -6,8 +6,10 @@ function Overview() {
     const [overviewData, setOverviewData] = useState([])
     const [recentBookings, setRecentBookings] = useState([])
 
+
+    // Summary Count
     const handleAPI = async () => {
-        console.log("API called");
+        // console.log("API called");
 
         try {
             const res = await axios.get("http://127.0.0.1:8000/admin/overview")
@@ -20,6 +22,8 @@ function Overview() {
         }
     }
 
+
+    // Recent Bookings Tb
     const handleRecentBookings = async () => {
         const userId = localStorage.getItem("User Id")
 
@@ -46,6 +50,7 @@ function Overview() {
     return (
         <div className="overview">
 
+            {/* Summary Count */}
             <div className="top">
                 <h2>Dashboard Overview</h2>
                 <p>Quick summary of system statistics</p>
@@ -76,6 +81,7 @@ function Overview() {
             </div>
 
             
+            {/* Recent Bookings Tb */}
             <div className="reportTableSection">
                 <h3>Recent Bookings</h3>
 

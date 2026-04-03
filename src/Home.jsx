@@ -3,6 +3,7 @@ import axios from 'axios'
 
 function Home() {
 
+    // Home Summary
     const [home, setHome] = useState([])
 
     const handleApi = async () => {
@@ -27,6 +28,7 @@ function Home() {
         <div>
             <main className="homeParent">
 
+                {/* Welcome Msg */}
                 <section className="bannerSection">
 
                     <img
@@ -51,6 +53,7 @@ function Home() {
                     </p>
                 </section>
 
+                {/* Basic Summary */}
                 <section className="statsSection">
 
                     <div className="statCard">

@@ -5,6 +5,7 @@ function Report() {
 
     const [reportData, setReportData] = useState([])
 
+    // Report Summary
     const handleReports = async () => {
 
         try {
@@ -20,7 +21,6 @@ function Report() {
 
     useEffect(() => {
         handleReports()
-        // handleRecentBookings()
     }, [])
 
 
@@ -28,6 +28,7 @@ function Report() {
         <div>
             <div className="reportPage">
 
+                {/* Report Summary */}
                 <div className="reportHeader">
                     <h2>Reports & Analytics</h2>
                     <p>Monitor business performance</p>
@@ -57,6 +58,7 @@ function Report() {
 
                 </div>
 
+                {/* Monthly Report */}
                 <div className="reportTableSection">
                     <h3>Monthly Revenue</h3>
 

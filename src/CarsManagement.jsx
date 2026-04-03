@@ -5,9 +5,12 @@ import marcedes from './assets/marcedes.jpeg'
 import testla from './assets/testla.avif'
 
 function CarsManagement() {
-    const [carData, setCarData] = useState([])
-    const [add, setAdd] = useState(false)
 
+    const [carData, setCarData] = useState([])
+
+
+    // Add Car
+    const [add, setAdd] = useState(false)
     const [addCar, setAddCar] = useState({
         car_name: "",
         brand: "",
@@ -20,6 +23,8 @@ function CarsManagement() {
         transmission: ""
     })
 
+
+    // Fetch Car From DB
     const carApi = async () => {
 
         try {
@@ -34,6 +39,7 @@ function CarsManagement() {
     }
 
 
+    // Post New Cars
     const handleAPI = async (e) => {
         e.preventDefault()
 
@@ -50,17 +56,18 @@ function CarsManagement() {
             setAdd(false)
 
         }
-        
-    }
 
+    }
 
     useEffect(() => {
         carApi()
     }, [])
+    
 
     return (
         <div>
 
+            {/* Add New Car to DB */}
             <div className="carsPage">
 
                 {add ?
@@ -77,6 +84,7 @@ function CarsManagement() {
                                     name='car_name'
                                     value={addCar.car_name}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 />
 
                                 <input
@@ -86,6 +94,7 @@ function CarsManagement() {
                                     name='brand'
                                     value={addCar.brand}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 />
                             </div>
 
@@ -97,6 +106,7 @@ function CarsManagement() {
                                     name='model'
                                     value={addCar.model}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 />
 
                                 <input
@@ -108,6 +118,7 @@ function CarsManagement() {
                                     name='year'
                                     value={addCar.year}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 />
                             </div>
 
@@ -120,6 +131,7 @@ function CarsManagement() {
                                     name='transmission'
                                     value={addCar.transmission}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 />
 
                                 <input
@@ -129,6 +141,7 @@ function CarsManagement() {
                                     name='price_per_day'
                                     value={addCar.price_per_day}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 />
                             </div>
 
@@ -140,6 +153,7 @@ function CarsManagement() {
                                     name='fuel_type'
                                     value={addCar.fuel_type}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 />
 
                                 <input
@@ -149,6 +163,7 @@ function CarsManagement() {
                                     name='seats'
                                     value={addCar.seats}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 />
                             </div>
 
@@ -159,6 +174,7 @@ function CarsManagement() {
                                     name='description'
                                     value={addCar.description}
                                     onChange={(e) => setAddCar({ ...addCar, [e.target.name]: e.target.value })}
+                                    required
                                 >
                                 </textarea>
                             </div>
@@ -171,6 +187,9 @@ function CarsManagement() {
                                 <button className='addBtn'>
                                     Add
                                 </button>
+                                <button className='backBtn' onClick={() => setAdd(false)}>
+                                    Back
+                                </button>
                             </div>
 
                         </form>
@@ -178,9 +197,15 @@ function CarsManagement() {
                     :
                     <>
                         <div className="carsTop">
-                            <button className="filterBtn" onClick={() => setAdd(true)}>+ Add 🚗</button>
+                            <button className="filterBtn" onClick={() => setAdd(true)}>
+                                <span class="material-symbols-outlined Icon">
+                                    add
+                                </span>
+                                Add 🚗
+                            </button>
                         </div>
 
+                        {/* Fetch Cars From DB */}
                         <div className="carsGrid">
                             {
                                 carData.map((val, ind) => {

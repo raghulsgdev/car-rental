@@ -4,6 +4,8 @@ import axios from 'axios'
 function Bookings() {
 
   const [recentBookings, setRecentBookings] = useState([])
+
+  // Bookings Summary Count
   const [bookingSummary, setBookingSummary] = useState({})
 
   const handleBookingSummary = async () => {
@@ -21,6 +23,7 @@ function Bookings() {
   }
 
 
+  // Getting Recent Bokings
   const handleRecentBookings = async () => {
 
     try {
@@ -40,6 +43,7 @@ function Bookings() {
   }, [])
 
 
+  // Bookings Accept Action
   const handleAccept = async (acptBooking) => {
     console.log(acptBooking);
 
@@ -61,9 +65,7 @@ function Bookings() {
             return item
 
           }
-
         })
-
       })
 
       console.log(res.data);
@@ -75,6 +77,7 @@ function Bookings() {
   }
 
 
+  // Bookings Reject Action
   const handleReject = async (rjctBooking) => {
     console.log(rjctBooking);
 
@@ -97,10 +100,8 @@ function Bookings() {
           }
 
         })
-
       })
-
-      console.log(res.data);
+      // console.log(res.data);
 
     } catch (error) {
       alert("Server Response Error", error)
@@ -109,12 +110,12 @@ function Bookings() {
   }
 
 
-
   return (
     <div>
       <div className="bookingParenttt">
         <div className="miniConn">
 
+          {/* Bookings Summary */}
           <div className="pageHeader">
             <h2>Booking Management</h2>
           </div>
@@ -149,11 +150,11 @@ function Bookings() {
 
         </div>
 
+        {/* Bookings Management */}
         <div className="tableSection">
 
           <div className="tableHeader">
-            <h3>Recent Bookings</h3>
-            {/* <input type="text" placeholder="Search bookings..." className="searchInput" /> */}
+            <h3>Booking Action</h3>
           </div>
 
 
@@ -194,9 +195,9 @@ function Bookings() {
                       <td>
 
                         {
-                          val.status === "Accepted" ?
+                          val.status === "Accepted" || val.status === 'Completed' ?
                             <span className='status accept'>Accepted</span>
-                            : val.status === "Rejected" ?
+                            : val.status === "Rejected" || val.status === 'Completed' ?
                               <span className='status reject'>Rejected</span>
                               : <>
                                 <button className="acceptBtn" onClick={() => handleAccept(val.id)}>

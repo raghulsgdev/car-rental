@@ -3,6 +3,7 @@ import axios from 'axios'
 
 function UsersManagement() {
 
+    // Getting All Users
     const [registeredData, setRegisteredData] = useState([])
 
     const handleRegister = async () => {
@@ -25,6 +26,8 @@ function UsersManagement() {
 
     return (
         <div>
+
+            {/* Users List */}
             <div className="usersPage">
 
                 <div className="usersHeader">

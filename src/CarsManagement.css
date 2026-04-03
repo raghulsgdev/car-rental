@@ -4,8 +4,9 @@
 
 .carsTop {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .searchInput {
@@ -22,6 +23,10 @@
     border: none;
     background: #3b82f6;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
     cursor: pointer;
 }
 
@@ -237,7 +242,6 @@
 .description {
     color: #555;
     font-size: 12px;
-    /* line-height: 3px; */
 }
 
 .addSection {
@@ -268,8 +272,24 @@
     background: #1e88e5;
     color: white;
     border: none;
+    margin-right: 15px;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.backBtn {
+    margin-top: 20px;
+    width: 150px;
+    padding: 10px;
+    background: #b1b2b3;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.backBtn:hover {
+    background: #9b9b9b;
 }
 
 .desInpt {
@@ -280,6 +300,13 @@
     border-radius: 10px;
     height: 180px;
 }
+
+.Icon {
+    font-size: 18px;
+    margin-bottom: 1px;
+}
+
+
 
 /* MOBILE VIEW */
 
@@ -332,6 +359,7 @@
     .addSection {
         padding: 20px;
         width: 100%;
+        margin-top: 30px;
     }
 
     .addSection>div {
@@ -341,6 +369,12 @@
     }
 
     .addInpt {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .backBtn {
         width: 100%;
         margin-right: 0;
         margin-bottom: 10px;

@@ -3,7 +3,6 @@ import { NavLink, useNavigate, Outlet } from "react-router-dom";
 
 function AdminDashboard() {
 
-
     const [isOpen, setIsOpen] = useState(false)
     const navigate = useNavigate()
 

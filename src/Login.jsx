@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Profile from './Profile';
 
 function Login() {
 
     const navigate = useNavigate()
-    // const [first, setfirst] = useState(1)
 
     const [userData, setUserData] = useState({
         email: "",
@@ -24,9 +22,6 @@ function Login() {
             const userId = storedData.data.Id
             localStorage.setItem("User Id", JSON.stringify(userId))
 
-            // alert(`Welcome Back ${storedData.data.Customer_name}`);
-            // navigate("/userdashboard");
-
             if (storedData.data.Status === "notRegistered") {
                 alert("Login failed — your email and password don’t match our records.")
 
@@ -39,7 +34,6 @@ function Login() {
             }
 
         } catch (error) {
-            // console.error("Server Response Error:", error);
             alert("Server Response Error:", error)
         }
 

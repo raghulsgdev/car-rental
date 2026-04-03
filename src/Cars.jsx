@@ -12,10 +12,13 @@ function Cars() {
     end_date: ""
   })
 
+  // Pending Payment Inpt
   const [payInpt, setPayInpt] = useState({
     payment: ""
   })
 
+  const [bookingData, setBookingData] = useState([])
+  // Search Car
   const [search, setSearch] = useState("")
 
   // Car Id and Car Price Per Day
@@ -24,11 +27,12 @@ function Cars() {
 
   const [rentNow, setrentNow] = useState(false)
 
-  const [carData, setCarData] = useState([])
-  const [bookingData, setBookingData] = useState([])
+  
+  
   const [bookingConfirmation, setBookingConfirmation] = useState(false)
 
   // Get Cars
+  const [carData, setCarData] = useState([])
   const carApi = async () => {
 
     try {
@@ -97,7 +101,7 @@ function Cars() {
       setBookingConfirmation(true)
 
     } catch (error) {
-      alert("Server Response Error")
+      alert("Server Response Error", error)
     }
   }
 
