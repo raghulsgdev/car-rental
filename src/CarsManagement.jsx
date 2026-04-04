@@ -54,6 +54,17 @@ function CarsManagement() {
 
         } finally {
             setAdd(false)
+            setAddCar({
+                car_name: "",
+                brand: "",
+                model: "",
+                year: "",
+                description: "",
+                price_per_day: "",
+                fuel_type: "",
+                seats: "",
+                transmission: ""
+            })
 
         }
 
@@ -62,7 +73,7 @@ function CarsManagement() {
     useEffect(() => {
         carApi()
     }, [])
-    
+
 
     return (
         <div>

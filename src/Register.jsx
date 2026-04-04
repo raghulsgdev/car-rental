@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
+
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         customer_name: "",
         email: "",
         phone: "",
         password: "",
-        created_at: "",
     });
 
     const handleSubmit = async (e) => {
@@ -25,8 +26,11 @@ function Register() {
 
             if (response.data.Status === "error") {
                 alert(response.data.Message)
+
             } else {
                 alert("Registration Successful")
+                navigate("/userlogin")
+
             }
 
             setFormData({
