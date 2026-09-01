@@ -54,6 +54,7 @@ function CarsManagement() {
 
         } finally {
             setAdd(false)
+            
             setAddCar({
                 car_name: "",
                 brand: "",
